@@ -37,6 +37,7 @@ def register(request):
             logged_user = User.objects.create(first_name=request.POST["first_name"], last_name=request.POST["last_name"],
                                               email=request.POST["email"], password=pw_hash, birthday=request.POST["birthday"])
             request.session['userid'] = logged_user.id
+            request.session['first_name'] = logged_user.first_name
             return redirect("/success")
     else:
         return redirect("/")

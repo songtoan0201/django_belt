@@ -9,14 +9,14 @@ def dashboard(request):
     other_user = User.objects.exclude(id=request.session["userid"])
     trips_not_created = Trip.objects.exclude(user=cur_user.id)
     trips_not_joined = Trip.objects.exclude(joined_by=cur_user.id)
+    trips_not_joined_not_created = trips_not_joined.exclude(user=cur_user.id)
     context = {
         "all_trips": Trip.objects.all(),
         "user_trips": cur_user.create_trips.values(),
-        "trips_not_joined": trips_not_joined,
+        "trips_not_joined_not_created": trips_not_joined_not_created,
         "trip_joined": cur_user.join.values(),
     }
     # print(context["all_trips"].values())
-    print(request.session["first_name"])
     return render(request, "trip_buddy/dashboard.html", context)
 
 

@@ -80,7 +80,7 @@
             </thead>
             
             <tbody>
-                {% for trip in trips_not_joined %}
+                {% for trip in trips_not_joined_not_created %}
                 <tr>
                     <td><a href="/trips/{{trip.id}}"><u>{{trip.destination}}</u></a></td>
                     <td>{{trip.start_date}}</td>
